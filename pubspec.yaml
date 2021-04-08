@@ -1,8 +1,7 @@
 name: flutter_idkit
-description: A new Flutter package project.
+description: A package can improve the efficiency of flutter application development. It provides some common functions and components in applications.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/zhoushuangjian001/flutter_idkit
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

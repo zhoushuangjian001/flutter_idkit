@@ -1,3 +1,5 @@
 ## [0.0.1] - TODO: Add release date.
 
-* TODO: Describe initial release.
+- Initialization of idkittime time format class.
+- Idkittime supports customizable time formatting styles.
+- Idkittime support time format failure return custom value.
