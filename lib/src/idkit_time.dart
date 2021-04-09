@@ -1,3 +1,5 @@
+part of flutter_idkit;
+
 class IDKitTime {
   // 时间对象
   DateTime _dateTime;
