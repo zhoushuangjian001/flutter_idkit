@@ -1,9 +1,11 @@
-part of flutter_idkit;
+import 'package:flutter/material.dart';
+import 'package:flutter_idkit/src/common/idkit_tap.dart';
+import 'package:rxdart/rxdart.dart';
 
 class IDKitControl extends StatefulWidget {
   const IDKitControl({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     this.enable = true,
     this.onTap,
     this.onDoubleTap,
@@ -17,29 +19,29 @@ class IDKitControl extends StatefulWidget {
   final bool enable;
 
   /// Single click event callback method.
-  final IDKitTapCallback onTap;
+  final IDKitTapCallback? onTap;
 
   /// Double click event callback method.
-  final IDKitTapCallback onDoubleTap;
+  final IDKitTapCallback? onDoubleTap;
 
   /// The duration is prevent clicking events repeated of widget.
-  final Duration duration;
+  final Duration? duration;
 
   @override
   _IDKitControlState createState() => _IDKitControlState();
 }
 
 class _IDKitControlState extends State<IDKitControl> {
-  bool _enable;
-  PublishSubject<GestureDetectorType> _publishSubject;
+  late bool _enable;
+  late PublishSubject<GestureDetectorType> _publishSubject;
 
   @override
   void initState() {
     super.initState();
     _enable = widget.enable;
     _publishSubject = PublishSubject<GestureDetectorType>()
-      ..throttleTime(widget.duration ?? Duration(microseconds: 500))
-      ..listen((event) {
+      ..throttleTime(widget.duration ?? const Duration(microseconds: 500))
+      ..listen((GestureDetectorType event) {
         switch (event) {
           case GestureDetectorType.onTap:
             widget.onTap?.call();
@@ -94,7 +96,7 @@ class _IDKitControlState extends State<IDKitControl> {
   // Destruction of page.
   @override
   void dispose() {
-    _publishSubject?.close();
+    _publishSubject.close();
     super.dispose();
   }
 }

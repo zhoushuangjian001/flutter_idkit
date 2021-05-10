@@ -1,18 +1,16 @@
-part of flutter_idkit;
-
 class IDKitTime {
   // 时间对象
-  DateTime _dateTime;
+  late DateTime _dateTime;
 
   /// 获取转换时间对象，否则为当前时间对象
-  DateTime get date => _dateTime ?? DateTime.now();
+  DateTime get date => _dateTime;
 
   /// Int 类型时间格式化
   String timeFormat({
-    int time,
-    String format: "yyyy-MM-dd hh:mm:ss",
-    TimeType type: TimeType.millisecond,
-    String defValue: "Format fail !!!",
+    required int time,
+    String format = 'yyyy-MM-dd hh:mm:ss',
+    TimeType type = TimeType.millisecond,
+    String defValue = 'Format fail !!!',
   }) {
     String _result;
     try {
@@ -32,14 +30,14 @@ class IDKitTime {
 
   /// String 类型时间格式化
   String stampFormat({
-    String stamp,
-    String format: "yyyy-MM-dd hh:mm:ss",
-    TimeType type: TimeType.millisecond,
-    String defValue: "Format fail !!!",
+    required String stamp,
+    String format = 'yyyy-MM-dd hh:mm:ss',
+    TimeType type = TimeType.millisecond,
+    String defValue = 'Format fail !!!',
   }) {
     String _result;
     try {
-      int time = int.tryParse(stamp);
+      int? time = int.tryParse(stamp);
       if (time == null) {
         return defValue;
       }
@@ -58,32 +56,30 @@ class IDKitTime {
 
   /// 自定义时间格式化
   String customFarmat({
-    int time,
-    String stamp,
-    String format: "yyyy-MM-dd hh:mm:ss",
-    TimeType type: TimeType.millisecond,
-    String defValue: "Format fail !!!",
+    int? time,
+    String? stamp,
+    String format = 'yyyy-MM-dd hh:mm:ss',
+    TimeType type = TimeType.millisecond,
+    String defValue = 'Format fail !!!',
   }) {
     if (time == null && stamp == null) {
       return defValue;
     } else {
       try {
         if (stamp != null) {
-          int zipTime = int.tryParse(stamp);
+          final int? zipTime = int.tryParse(stamp);
           if (zipTime == null) {
             return defValue;
           }
-          if (time == null) {
-            time = zipTime;
-          }
+          time ??= zipTime;
         }
 
         if (type == TimeType.second) {
-          time *= 1000000;
+          time = time! * 1000000;
         } else if (type == TimeType.millisecond) {
-          time *= 1000;
+          time = time! * 1000;
         }
-        _dateTime = DateTime.fromMicrosecondsSinceEpoch(time);
+        _dateTime = DateTime.fromMicrosecondsSinceEpoch(time!);
         return _formatHandle(format);
       } catch (e) {
         return defValue;
@@ -93,19 +89,19 @@ class IDKitTime {
 
   // 格式处理
   String _formatHandle(String format) {
-    var _format = format
-        .replaceAll("yyyy", _yearHandel())
-        .replaceAll("yy", _yearHandel(handle: true))
-        .replaceAll("MM", _mendZeroHandle(_dateTime.month, mend: true))
-        .replaceAll("M", _mendZeroHandle(_dateTime.month))
-        .replaceAll("dd", _mendZeroHandle(_dateTime.day, mend: true))
-        .replaceAll("d", _mendZeroHandle(_dateTime.day))
-        .replaceAll("hh", _mendZeroHandle(_dateTime.hour, mend: true))
-        .replaceAll("h", _mendZeroHandle(_dateTime.hour))
-        .replaceAll("mm", _mendZeroHandle(_dateTime.minute, mend: true))
-        .replaceAll("m", _mendZeroHandle(_dateTime.minute))
-        .replaceAll("ss", _mendZeroHandle(_dateTime.second, mend: true))
-        .replaceAll("s", _mendZeroHandle(_dateTime.second));
+    final String _format = format
+        .replaceAll('yyyy', _yearHandel())
+        .replaceAll('yy', _yearHandel(handle: true))
+        .replaceAll('MM', _mendZeroHandle(_dateTime.month, mend: true))
+        .replaceAll('M', _mendZeroHandle(_dateTime.month))
+        .replaceAll('dd', _mendZeroHandle(_dateTime.day, mend: true))
+        .replaceAll('d', _mendZeroHandle(_dateTime.day))
+        .replaceAll('hh', _mendZeroHandle(_dateTime.hour, mend: true))
+        .replaceAll('h', _mendZeroHandle(_dateTime.hour))
+        .replaceAll('mm', _mendZeroHandle(_dateTime.minute, mend: true))
+        .replaceAll('m', _mendZeroHandle(_dateTime.minute))
+        .replaceAll('ss', _mendZeroHandle(_dateTime.second, mend: true))
+        .replaceAll('s', _mendZeroHandle(_dateTime.second));
     return _format.trim();
   }
 
@@ -125,7 +121,7 @@ class IDKitTime {
     String mendValue = value.toString();
     if (mend) {
       if (value < 10) {
-        mendValue = "0" + mendValue;
+        mendValue = '0' + mendValue;
       }
     }
     return mendValue;
