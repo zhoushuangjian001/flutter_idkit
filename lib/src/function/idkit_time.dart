@@ -1,6 +1,6 @@
 class IDKitTime {
   // 时间对象
-  late DateTime _dateTime;
+  DateTime _dateTime = DateTime.now();
 
   /// 获取转换时间对象，否则为当前时间对象
   DateTime get date => _dateTime;
