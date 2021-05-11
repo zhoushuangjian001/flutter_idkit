@@ -31,14 +31,15 @@ extension IDKitNum on num {
 }
 
 /// The method extension of string.
-///
-/// [round]: Did The object round at specifies the object of reserved digits, default value is true.
-///
-/// [digit]: Specifies the object of reserved digits.
-///
-/// [separator]: The shape of the thousandth.
-
 extension IDKitString on String {
+  /// Amount formatting.
+  ///
+  /// [round]: Did The object round at specifies the object of reserved digits, default value is true.
+  ///
+  /// [digit]: Specifies the object of reserved digits.
+  ///
+  /// [separator]: The shape of the thousandth.
+  ///
   String addThousandth({
     bool round = true,
     int? digit,
