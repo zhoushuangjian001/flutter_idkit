@@ -1,5 +1,6 @@
 library flutter_idkit;
 
+export 'src/function/idkit_color.dart';
 export 'src/function/idkit_desensitization.dart';
 export 'src/function/idkit_num.dart';
 export 'src/function/idkit_time.dart';
