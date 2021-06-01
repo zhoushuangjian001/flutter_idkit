@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_idkit/flutter_idkit.dart';
 
 class MaterialScreenApp extends MaterialApp {
   const MaterialScreenApp({
@@ -35,7 +36,7 @@ class MaterialScreenApp extends MaterialApp {
     Map<LogicalKeySet, Intent>? shortcuts,
     Map<Type, Action<Intent>>? actions,
     String? restorationScopeId,
-    this.isFollow = true,
+    this.allowTextFactor = true,
   }) : super(
           key: key,
           navigatorKey: navigatorKey,
@@ -72,7 +73,7 @@ class MaterialScreenApp extends MaterialApp {
           restorationScopeId: restorationScopeId,
         );
 
-  final bool isFollow;
+  final bool allowTextFactor;
 
   const MaterialScreenApp.router({
     Key? key,
@@ -104,7 +105,7 @@ class MaterialScreenApp extends MaterialApp {
     Map<LogicalKeySet, Intent>? shortcuts,
     Map<Type, Action<Intent>>? actions,
     String? restorationScopeId,
-    this.isFollow = true,
+    this.allowTextFactor = true,
   }) : super(
           key: key,
           scaffoldMessengerKey: scaffoldMessengerKey,
@@ -134,15 +135,19 @@ class MaterialScreenApp extends MaterialApp {
         );
 
   @override
-  TransitionBuilder? get builder => (BuildContext context, Widget? child) {
-        if (isFollow) {
-          return child!;
-        } else {
-          return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: child!);
-        }
-      };
+  TransitionBuilder? get builder =>
+      (BuildContext context, Widget? child) => OrientationBuilder(
+            builder: (BuildContext context, Orientation orientation) {
+              IDKitScreen().build(context, orientation);
+              if (allowTextFactor) {
+                return child!;
+              } else {
+                return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: child!);
+              }
+            },
+          );
 
   @override
   // TODO: implement routerDelegate
