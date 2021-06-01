@@ -19,18 +19,20 @@ class IDKitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, BoxConstraints constraints) {
-      return OrientationBuilder(builder: (_, Orientation orientation) {
-        if (constraints.maxHeight != 0 || constraints.maxWidth != 0) {
-          IDKitScreenAdapter.build(
-            constraints,
-            orientation,
-            designSize: designSize,
-          );
-          return builder.call();
-        }
-        throw 'The upper transitive constraint [maxHeight] and [maxWidth] is zero.';
-      });
-    });
+    return MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        child: LayoutBuilder(builder: (_, BoxConstraints constraints) {
+          return OrientationBuilder(builder: (_, Orientation orientation) {
+            if (constraints.maxHeight != 0 || constraints.maxWidth != 0) {
+              IDKitScreenAdapter.build(
+                constraints,
+                orientation,
+                designSize: designSize,
+              );
+              return builder.call();
+            }
+            throw 'The upper transitive constraint [maxHeight] and [maxWidth] is zero.';
+          });
+        }));
   }
 }
