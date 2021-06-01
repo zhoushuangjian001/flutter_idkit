@@ -28,6 +28,8 @@ class IDKitScreenAdapter {
     _textScaleFactor = window.textScaleFactor;
     _statusBarHeight = window.padding.top;
     _bottomBarHeight = window.padding.bottom;
+    _padding = window.viewPadding;
+    _ins = window.viewInsets;
   }
 
   /// the orientation of the screen.
@@ -39,6 +41,8 @@ class IDKitScreenAdapter {
   static late double _statusBarHeight;
   static late double _bottomBarHeight;
   static late Size _uiSize;
+  static late ui.WindowPadding _padding;
+  static late ui.WindowPadding _ins;
 
   /// Get the orientation of the screen.
   static Orientation get orientation => _orientation;
@@ -46,6 +50,10 @@ class IDKitScreenAdapter {
 
   /// Get the width of the screen.
   static double get screenWidth => _screenWidth;
+
+  static ui.WindowPadding get padding => _padding;
+
+  static ui.WindowPadding get ins => _ins;
 
   /// Get the height of the screen.
   static double get screenHeight => _screenHeight;
