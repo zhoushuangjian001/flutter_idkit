@@ -81,6 +81,6 @@ class IDKitScreenAdapter {
   /// [allowFontScaling] is following system font scaling.
   static double setSp(num fontSize, {bool allowFontScaling = true}) =>
       allowFontScaling
-          ? fontSize * scaleFont * _textScaleFactor
-          : fontSize * scaleFont;
+          ? fontSize * scaleFont
+          : fontSize * scaleFont / _textScaleFactor;
 }
