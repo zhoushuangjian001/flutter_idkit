@@ -17,8 +17,8 @@ class IDKitScreen {
     // The configure of device.
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     _orientation = orientation;
-    _screenHeight = mediaQueryData.size.width;
-    _screenWidth = mediaQueryData.size.height;
+    _screenHeight = mediaQueryData.size.height;
+    _screenWidth = mediaQueryData.size.width;
     final Size _size = designSize ??= defaultUISize;
     _uiSize = orientation == Orientation.portrait ? _size : _size.flipped;
     _devicePixelRatio = mediaQueryData.devicePixelRatio;
