@@ -22,7 +22,8 @@ class IDKitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MediaQuery(
         data: MediaQueryData.fromWindow(
-            WidgetsBinding.instance?.window ?? ui.window),
+                WidgetsBinding.instance?.window ?? ui.window)
+            .copyWith(textScaleFactor: 1.0),
         child: LayoutBuilder(builder: (_, BoxConstraints constraints) {
           return OrientationBuilder(builder: (_, Orientation orientation) {
             if (constraints.maxHeight != 0 || constraints.maxWidth != 0) {
