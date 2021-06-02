@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' show pow;
 
 /// The method extension of int and double.
 extension IDKitNum on num {

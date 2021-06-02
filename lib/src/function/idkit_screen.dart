@@ -1,6 +1,7 @@
-import 'dart:io';
-import 'dart:math';
-import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
+import 'dart:math' show min;
+import 'package:flutter/material.dart'
+    show Size, BuildContext, Orientation, MediaQuery, MediaQueryData;
 
 class IDKitScreen {
   /// Factory method construction.

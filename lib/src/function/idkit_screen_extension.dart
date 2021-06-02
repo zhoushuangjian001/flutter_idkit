@@ -1,4 +1,4 @@
-import 'package:flutter_idkit/src/function/idkit_screen.dart';
+import 'package:flutter_idkit/src/function/idkit_screen.dart' show IDKitScreen;
 
 extension IDKitScreenNum on num {
   /// Width factor mapping.

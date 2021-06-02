@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show StatefulWidget, Key, Widget, State, BuildContext, GestureDetector;
 import 'package:flutter_idkit/src/common/idkit_tap.dart';
 import 'package:rxdart/rxdart.dart';
 
