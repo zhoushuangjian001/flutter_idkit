@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -7,8 +8,10 @@ class IDKitScreen {
   IDKitScreen._();
   static late final IDKitScreen _instance = IDKitScreen._();
 
-  ///
-  static const Size defaultUISize = Size(1080, 1920);
+  /// Design reference size.
+  static const Size androidUISize = Size(1080, 1920);
+  static const Size iosUISize = Size(375, 667);
+  static const Size windowUISize = Size(1024, 768);
   void build(
     BuildContext context,
     Orientation orientation, {
@@ -19,7 +22,18 @@ class IDKitScreen {
     _orientation = orientation;
     _screenHeight = mediaQueryData.size.height;
     _screenWidth = mediaQueryData.size.width;
-    final Size _size = designSize ??= defaultUISize;
+    late Size _size;
+    if (Platform.isAndroid) {
+      _size = androidUISize;
+    } else if (Platform.isIOS) {
+      _size = iosUISize;
+    } else if (Platform.isWindows) {
+      _size = windowUISize;
+    } else if (Platform.isMacOS) {
+      _size = androidUISize.flipped;
+    } else {
+      _size = androidUISize;
+    }
     _uiSize = orientation == Orientation.portrait ? _size : _size.flipped;
     _devicePixelRatio = mediaQueryData.devicePixelRatio;
     _textScaleFactor = mediaQueryData.textScaleFactor;
@@ -39,7 +53,12 @@ class IDKitScreen {
 
   /// Get the orientation of the screen.
   static Orientation get orientation => IDKitScreen()._orientation;
+
+  /// Get the physical pixel ratio of the device.
   static double get devicePixelRatio => IDKitScreen()._devicePixelRatio;
+
+  /// Gets the system text scaling factor.
+  static double get textScaleFactor => IDKitScreen()._textScaleFactor;
 
   /// Get the width of the screen.
   static double get screenWidth => IDKitScreen()._screenWidth;
@@ -67,6 +86,5 @@ class IDKitScreen {
   static double setHeight(num height) => scaleHeight * height;
 
   /// Get the mapping value of design text font through text font ratio.
-  /// [allowFontScaling] is following system font scaling.
   static double setSp(num fontSize) => fontSize * scaleFont;
 }
