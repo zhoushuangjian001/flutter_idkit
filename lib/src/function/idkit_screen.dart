@@ -9,9 +9,11 @@ class IDKitScreen {
   static late final IDKitScreen _instance = IDKitScreen._();
 
   /// Design reference size.
-  static const Size androidUISize = Size(1080, 1920);
-  static const Size iosUISize = Size(375, 667);
-  static const Size windowUISize = Size(1024, 768);
+  final Size androidUISize = const Size(1080, 1920);
+  final Size iosUISize = const Size(375, 667);
+  final Size windowUISize = const Size(1024, 768);
+
+  /// Parameter configuration function.
   void build(
     BuildContext context,
     Orientation orientation, {
