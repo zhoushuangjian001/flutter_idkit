@@ -24,15 +24,15 @@ class IDKitScreen {
     _screenWidth = mediaQueryData.size.width;
     late Size _size;
     if (Platform.isAndroid) {
-      _size = androidUISize;
+      _size = designSize ?? androidUISize;
     } else if (Platform.isIOS) {
-      _size = iosUISize;
+      _size = designSize ?? iosUISize;
     } else if (Platform.isWindows) {
-      _size = windowUISize;
+      _size = designSize ?? windowUISize;
     } else if (Platform.isMacOS) {
-      _size = androidUISize.flipped;
+      _size = designSize ?? androidUISize.flipped;
     } else {
-      _size = androidUISize;
+      _size = designSize ?? androidUISize;
     }
     _uiSize = orientation == Orientation.portrait ? _size : _size.flipped;
     _devicePixelRatio = mediaQueryData.devicePixelRatio;
