@@ -1,6 +1,4 @@
-import 'dart:io' show Platform;
 import 'dart:math' show min;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     show Size, BuildContext, Orientation, MediaQuery, MediaQueryData;
 import 'package:flutter_idkit/src/function/idkit_platform.dart';
@@ -29,15 +27,15 @@ class IDKitScreen {
     _screenWidth = mediaQueryData.size.width;
     late Size _size;
     if (IDKitPlatform.isAndroid) {
-      _size = designSize ?? androidUISize;
+      _size = designSize ??= androidUISize;
     } else if (IDKitPlatform.isIOS) {
-      _size = designSize ?? iosUISize;
+      _size = designSize ??= iosUISize;
     } else if (IDKitPlatform.isWindows) {
-      _size = designSize ?? windowUISize;
+      _size = designSize ??= windowUISize;
     } else if (IDKitPlatform.isMacOS) {
-      _size = designSize ?? androidUISize.flipped;
+      _size = designSize ??= androidUISize.flipped;
     } else {
-      _size = designSize ?? androidUISize;
+      _size = designSize ??= androidUISize;
     }
     _uiSize = orientation == Orientation.portrait ? _size : _size.flipped;
     _devicePixelRatio = mediaQueryData.devicePixelRatio;
