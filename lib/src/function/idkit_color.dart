@@ -18,11 +18,11 @@ extension IDKitColor on String {
     }
     switch (length) {
       case 3:
-        trim = 'FF' + repeat(trim);
+        trim = 'FF' + _repeat(trim);
         break;
       case 5:
         trim = substring(2);
-        trim = 'FF' + repeat(trim);
+        trim = 'FF' + _repeat(trim);
         break;
       case 6:
         trim = 'FF' + trim;
@@ -45,7 +45,7 @@ extension IDKitColor on String {
 }
 
 /// Get duplicate string.
-String repeat(String obj) {
+String _repeat(String obj) {
   final Iterable<String> repeat = obj.split('').map((String e) => e * 2);
   return repeat.join();
 }

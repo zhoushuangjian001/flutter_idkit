@@ -140,8 +140,16 @@ class _DividerPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+  bool shouldRepaint(covariant _DividerPainter oldDelegate) {
+    if (oldDelegate.axis != axis ||
+        oldDelegate.color != color ||
+        oldDelegate.dottedUnitInterval != dottedUnitInterval ||
+        oldDelegate.dottedUnitLength != dottedUnitLength ||
+        oldDelegate.endIndent != endIndent ||
+        oldDelegate.indent != indent) {
+      return true;
+    }
+    return false;
   }
 }
 
@@ -261,6 +269,7 @@ extension _PainterSolid on _DividerPainter {
   }
 }
 
+/// The type of drawing line.
 enum LineType {
   solid,
   dotted,

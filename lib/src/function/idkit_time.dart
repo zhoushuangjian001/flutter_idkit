@@ -106,7 +106,7 @@ class IDKitTime {
   }
 
   // 年份处理
-  String _yearHandel({bool handle: false}) {
+  String _yearHandel({bool handle = false}) {
     int year;
     if (handle) {
       year = _dateTime.year % 100;
@@ -117,7 +117,7 @@ class IDKitTime {
   }
 
   // 补零处理
-  String _mendZeroHandle(int value, {bool mend: false}) {
+  String _mendZeroHandle(int value, {bool mend = false}) {
     String mendValue = value.toString();
     if (mend) {
       if (value < 10) {
