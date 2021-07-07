@@ -10,3 +10,4 @@ export 'src/ui/idkit_button.dart';
 export 'src/ui/idkit_control.dart';
 export 'src/ui/idkit_divider.dart';
 export 'src/ui/idkit_screen.dart';
+export 'src/ui/idkit_toast.dart';
