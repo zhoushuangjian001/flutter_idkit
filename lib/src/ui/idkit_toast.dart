@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 
 class IDKitToast {
   /// 便捷获取单利对象
@@ -14,6 +13,16 @@ class IDKitToast {
   /// 组件初始化
   factory IDKitToast.init(BuildContext context) => _instanceMethod(context);
 
+  /// 属性初始化
+  IDKitToast._init(BuildContext context) {
+    _context = context;
+  }
+
+  /// 单利对象初始化
+  static IDKitToast _instanceMethod(BuildContext context) {
+    return _instance ??= IDKitToast._init(context);
+  }
+
   /// 属性的声明
   static IDKitToast? _instance;
   late BuildContext _context;
@@ -21,13 +30,6 @@ class IDKitToast {
   OverlayEntry? _overlayEntry;
   late final GlobalKey<_ToastAnimationdState> _key = GlobalKey();
   Completer<bool>? completer;
-  static IDKitToast _instanceMethod(BuildContext context) {
-    return _instance ??= IDKitToast._init(context);
-  }
-
-  IDKitToast._init(BuildContext context) {
-    _context = context;
-  }
 
   /// 单独文本自动弹框
   ///
@@ -390,6 +392,6 @@ class ToastStyle {
 
   @override
   String toString() {
-    return 'ToastStyle(baseBgColor:${baseBgColor ?? Colors.white},bgColor:${bgColor ?? Colors.white}),textStyle:${objectRuntimeType(textStyle, 'TextStyle')},maxLine:${maxLine ?? 1}))';
+    return 'ToastStyle(baseBgColor:${baseBgColor ?? Colors.white},bgColor:${bgColor ?? Colors.white}),maxLine:${maxLine ?? 1}))';
   }
 }
