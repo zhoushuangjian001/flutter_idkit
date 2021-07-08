@@ -388,9 +388,7 @@ class IDKitButton extends StatelessWidget {
 
     // Enable
     if (enable) {
-      current = InkWell(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
+      current = GestureDetector(
         onTap: _throttle(() async {
           await Future<dynamic>.delayed(duration);
           onTap?.call();
