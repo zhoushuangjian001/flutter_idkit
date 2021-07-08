@@ -395,7 +395,6 @@ class IDKitButton extends StatelessWidget {
           await Future<dynamic>.delayed(duration);
           onTap?.call();
         }),
-        onTapDown: (_) {},
         child: SizedBox(
           width: width,
           height: height,
