@@ -237,7 +237,7 @@ class IDKitButton extends StatelessWidget {
     late LayoutId? imageLayoutWidget;
 
     if (title != null && imageChild != null) {
-      late TextStyle? _style = enable ? textStyle : disableTextStyle;
+      late final TextStyle? _style = enable ? textStyle : disableTextStyle;
       textLayoutWidget = LayoutId(
         id: _textLayoutId,
         child: Text(
@@ -256,14 +256,14 @@ class IDKitButton extends StatelessWidget {
         children: [textLayoutWidget, imageLayoutWidget],
       );
     } else {
-      if (title == null) {
+      if (title == null && imageChild == null) {
         current = LimitedBox(
           maxWidth: 0.0,
           maxHeight: 0.0,
           child: ConstrainedBox(constraints: const BoxConstraints.expand()),
         );
       } else {
-        late TextStyle? _style = enable ? textStyle : disableTextStyle;
+        late final TextStyle? _style = enable ? textStyle : disableTextStyle;
         current = CustomSingleChildLayout(
           delegate: _IDKitButtonSingleChildLayoutDelegate(),
           child: imageChild ??
